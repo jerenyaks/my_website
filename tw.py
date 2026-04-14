@@ -18,4 +18,7 @@ def calculate_tax(income, rate):
 
 calculate_tax(50000, 0.2)  # Output: 10000.0
 
+git pull origin main
+
+
 
