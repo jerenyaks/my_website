@@ -8,4 +8,4 @@ def describe_temp(temp):
         print("Cool")
     else:
         print("Cold")
-describe_temp(30)
+describe_temp(23)
