@@ -1204,6 +1204,7 @@ textarea {
         <p>Copyright 2026 KR Academy. All rights reserved. | Discipline • Talent • Passion</p>
     </footer>
 
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>   
     <script>
         function showSection(sectionId) {
             var sections = document.querySelectorAll('.page-section');
@@ -1226,7 +1227,9 @@ textarea {
             alert('Thank you for your message! We will get back to you soon.');
             e.target.reset();
         }
-function handleEnrollmentSubmit(e) {
+
+   
+  function handleEnrollmentSubmit(e) {
     e.preventDefault();
 
     var fullname = document.getElementById('fullname').value;
@@ -1266,7 +1269,7 @@ function handleEnrollmentSubmit(e) {
      
     </script>
 <!-- Supabase Integration -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
   const { createClient } = supabase;
   const client = createClient(
