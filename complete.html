@@ -1234,5 +1234,48 @@ textarea {
             e.target.reset();
         }
     </script>
+<!-- Supabase Integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase;
+  const client = createClient(
+    'https://rifsuqzgwulaqdqzfaeo.supabase.co',
+    'sb_publishable_Ig5Osm8VH4Y_UzbEVV0X7w_nnn77H9U'
+  );
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const data = {
+      full_name: form.querySelector('[name="full_name"]').value,
+      date_of_birth: form.querySelector('[name="date_of_birth"]').value,
+      gender: form.querySelector('[name="gender"]').value,
+      email: form.querySelector('[name="email"]').value,
+      phone: form.querySelector('[name="phone"]').value,
+      guardian_name: form.querySelector('[name="guardian_name"]').value,
+      guardian_phone: form.querySelector('[name="guardian_phone"]').value,
+      home_address: form.querySelector('[name="home_address"]').value,
+      team_interest: form.querySelector('[name="team_interest"]').value,
+      preferred_position: form.querySelector('[name="preferred_position"]').value,
+      experience_level: form.querySelector('[name="experience_level"]').value,
+      previous_clubs: form.querySelector('[name="previous_clubs"]').value,
+      medical_conditions: form.querySelector('[name="medical_conditions"]').value,
+      terms_agreed: form.querySelector('[name="terms_agreed"]').checked,
+      newsletter_subscribed: form.querySelector('[name="newsletter_subscribed"]').checked,
+    };
+
+    const { error } = await client.from('enrollments').insert([data]);
+
+    if (error) {
+      alert('❌ Something went wrong. Please try again.');
+      console.error(error);
+    } else {
+      alert('✅ Application submitted! We will contact you within 3-5 business days.');
+      form.reset();
+    }
+  });
+</script>
+
 </body>
 </html>
