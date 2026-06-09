@@ -1226,13 +1226,44 @@ textarea {
             alert('Thank you for your message! We will get back to you soon.');
             e.target.reset();
         }
+function handleEnrollmentSubmit(e) {
+    e.preventDefault();
 
-        function handleEnrollmentSubmit(e) {
-            e.preventDefault();
-            var fullname = document.getElementById('fullname').value;
-            alert('Thank you for your enrollment application, ' + fullname + '! We have received your application and will review it shortly. Our coaching staff will contact you within 3-5 business days to schedule your trial session. KR Academy | Building Tomorrow\'s Legends');
-            e.target.reset();
+    var fullname = document.getElementById('fullname').value;
+
+    const { createClient } = supabase;
+    const client = createClient(
+        'https://rifsuqzgwulaqdqzfaeo.supabase.co',
+        'sb_publishable_Ig5Osm8VH4Y_UzbEVV0X7w_nnn77H9U'
+    );
+
+    const data = {
+        full_name: document.getElementById('fullname').value,
+        date_of_birth: document.getElementById('dob').value,
+        gender: document.getElementById('gender').value,
+        email: document.getElementById('contact-email').value,
+        phone: document.getElementById('contact-phone').value,
+        guardian_name: document.getElementById('guardian').value,
+        guardian_phone: document.getElementById('guardian').value,
+        home_address: document.getElementById('address').value,
+        team_interest: document.getElementById('age-group').value,
+        preferred_position: document.getElementById('position').value,
+        experience_level: document.getElementById('experience').value,
+        previous_clubs: document.getElementById('clubs').value,
+        medical_conditions: document.getElementById('medical').value,
+        terms_agreed: document.getElementById('agreement').checked,
+        newsletter_subscribed: document.getElementById('newsletter').checked,
+    };
+
+    client.from('enrollments').insert([data]).then(({ error }) => {
+        if (error) {
+            console.error('Supabase error:', error);
         }
+        alert('Thank you for your enrollment application, ' + fullname + '! We have received your application and will review it shortly. Our coaching staff will contact you within 3-5 business days to schedule your trial session. KR Academy | Building Tomorrow\'s Legends');
+        e.target.reset();
+    });
+}
+     
     </script>
 <!-- Supabase Integration -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
